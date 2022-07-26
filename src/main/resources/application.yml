@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: sboot-campeonato-cbf
+    description: API de gerenciamento da CBF
+  main:
+    banner-mode: "off"
+    allow-bean-definition-overriding: true
+  beaninfo:
+    ignore: true
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+  error:
+    whitelabel:
+      enabled: false
+management:
+  server:
+    port: 9090
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, prometheus
+
+---
+
+# configurações para desenvolvimento local
+
+spring:
+  profiles:
+    active: local
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/cbfchampion?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtualhost: /
+    username: guest
+    password: guest
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+

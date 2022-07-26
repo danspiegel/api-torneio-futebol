@@ -1,0 +1,1224 @@
+swagger: "2.0"
+info:
+  description: "API de Gerenciamento do CBF"
+  version: 4.0.0
+  title: "API de Gerenciamento do CBF"
+host: "sboot-cbf-api"
+basePath: "/v1/cbf"
+schemes:
+  - "https"
+
+paths:
+  /jogadores:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findAllJogadores"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ListaJogadoresResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "insertJogador"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto do Jogador"
+          required: true
+          schema:
+            $ref: "#/definitions/JogadorRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /jogadores/transferir:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "transferirJogador"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto de Transferencia do Jogador"
+          required: true
+          schema:
+            $ref: "#/definitions/Transferencia"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /jogadores/{id}:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findJogadorById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Jogador"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/JogadorResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    put:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "updateJogador"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Jogador"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto do Jogador"
+          required: true
+          schema:
+            $ref: "#/definitions/JogadorRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    delete:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "deleteJogadorById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Jogador"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /times:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findAllTimes"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ListaTimesResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "insertTime"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto do Time"
+          required: true
+          schema:
+            $ref: "#/definitions/TimeRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /times/{id}:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findTimeById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Time"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/TimeResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    put:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "updateTime"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Time"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto do Time"
+          required: true
+          schema:
+            $ref: "#/definitions/TimeRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    delete:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "deleteTimeById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Time"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /times/{id}/inserirJogador:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "inserirJogadorTime"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Time"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Lista de IDs de Jogadores"
+          required: true
+          schema:
+            $ref: "#/definitions/ListaJogadoresRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /partidas/{id}:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findPartidaById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PartidaResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    delete:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "deletePartidaById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /partidas:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findAllPartidas"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ListaPartidasResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "insertPartida"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto de Cadastro da Partida"
+          required: true
+          schema:
+            $ref: "#/definitions/PartidaRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{id}:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findTorneioById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/TorneioResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    put:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "updateTorneio"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto de Cadastro do Torneio"
+          required: true
+          schema:
+            $ref: "#/definitions/TorneioRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    delete:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "deleteTorneioById"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios:
+    get:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "findAllTorneios"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ListaTorneiosResponse"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "insertTorneio"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objeto de Cadastro do Torneio"
+          required: true
+          schema:
+            $ref: "#/definitions/TorneioRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{idTorneio}/partidas/{idPartida}/eventos/inicio:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "iniciarPartida"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "idTorneio"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "path"
+          name: "idPartida"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{idTorneio}/partidas/{idPartida}/eventos/gol:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "marcarGol"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "idTorneio"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "path"
+          name: "idPartida"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto de Gol da Partida"
+          required: true
+          schema:
+            $ref: "#/definitions/GolPartidaRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{idTorneio}/partidas/{idPartida}/eventos/intervalo:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "marcarIntervalo"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "idTorneio"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "path"
+          name: "idPartida"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto de Intervalo"
+          required: true
+          schema:
+            $ref: "#/definitions/IntervaloRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{idTorneio}/partidas/{idPartida}/eventos/acrescimo:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "marcarAcrescimo"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "idTorneio"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "path"
+          name: "idPartida"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto de Acrescimo"
+          required: true
+          schema:
+            $ref: "#/definitions/AcrescimoRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{idTorneio}/partidas/{idPartida}/eventos/substituicao:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "substituirJogador"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "idTorneio"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "path"
+          name: "idPartida"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto de Substituicao"
+          required: true
+          schema:
+            $ref: "#/definitions/SubstituicaoRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{idTorneio}/partidas/{idPartida}/eventos/advertencia:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "advertirJogador"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "idTorneio"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "path"
+          name: "idPartida"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "body"
+          description: "Objeto de Advertencia"
+          required: true
+          schema:
+            $ref: "#/definitions/AdvertenciaRequest"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+  /torneios/{idTorneio}/partidas/{idPartida}/eventos/fim:
+    post:
+      tags:
+        - "sboot-cbf-api"
+      operationId: "finalizarPartida"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "idTorneio"
+          description: "Id do Torneio"
+          required: true
+          type: "integer"
+          format: "int32"
+        - in: "path"
+          name: "idPartida"
+          description: "Id da Partida"
+          required: true
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/StandardSuccess"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/StandardError"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/StandardError"
+
+definitions:
+
+  StandardError:
+    type: "object"
+    properties:
+      timestamp:
+        type: "integer"
+        format: "int64"
+      status:
+        type: "integer"
+      error:
+        type: "string"
+      message:
+        type: "string"
+
+  StandardSuccess:
+    type: "object"
+    properties:
+      status:
+        type: "integer"
+      message:
+        type: "string"
+
+  JogadorRequest:
+    type: "object"
+    properties:
+      nome:
+        type: "string"
+      dataNascimento:
+        type: "string"
+      pais:
+        type: "string"
+
+  JogadorResponse:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      nome:
+        type: "string"
+      dataNascimento:
+        type: "string"
+      pais:
+        type: "string"
+      time:
+        $ref: "#/definitions/TimeResponse"
+
+  TimeRequest:
+    type: "object"
+    properties:
+      nome:
+        type: "string"
+      localidade:
+        type: "string"
+
+  TimeResponse:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      nome:
+        type: "string"
+      localidade:
+        type: "string"
+      jogadores:
+        type: "array"
+        items:
+          $ref: "#/definitions/JogadorResponse"
+
+  ListaJogadoresResponse:
+    type: "object"
+    properties:
+      jogadores:
+        type: "array"
+        items:
+          $ref: "#/definitions/JogadorResponse"
+
+  ListaTimesResponse:
+    type: "object"
+    properties:
+      times:
+        type: "array"
+        items:
+          $ref: "#/definitions/TimeResponse"
+
+  Transferencia:
+    type: "object"
+    properties:
+      idJogador:
+        type: "integer"
+        format: "int32"
+      idTime:
+        type: "integer"
+        format: "int32"
+
+  PartidaRequest:
+    type: "object"
+    properties:
+      idTorneio:
+        type: "integer"
+        format: "int32"
+      idTimeUm:
+        type: "integer"
+        format: "int32"
+      idTimeDois:
+        type: "integer"
+        format: "int32"
+
+  PartidaResponse:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      timeUm:
+        $ref: "#/definitions/TimeResponse"
+      timeDois:
+        $ref: "#/definitions/TimeResponse"
+      dataHoraInicio:
+        type: "string"
+      dataHoraFim:
+        type: "string"
+      torneio:
+        $ref: "#/definitions/TorneioResponse"
+      acrescimos:
+        type: "integer"
+        format: "int32"
+      intervalo:
+        type: "integer"
+        format: "int32"
+      qtdGolsTimeUm:
+        type: "integer"
+        format: "int64"
+      qtdGolsTimeDois:
+        type: "integer"
+        format: "int64"
+      substituicoes:
+        type: "array"
+        items:
+          $ref: "#/definitions/SubstituicaoResponse"
+      advertencias:
+        type: "array"
+        items:
+          $ref: "#/definitions/AdvertenciaResponse"
+
+  TorneioRequest:
+    type: "object"
+    properties:
+      descricao:
+        type: "string"
+      idsTimes:
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+
+  TorneioResponse:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      descricao:
+        type: "string"
+      times:
+        type: "array"
+        items:
+          $ref: "#/definitions/TimeResponse"
+
+  ListaPartidasResponse:
+    type: "object"
+    properties:
+      partidas:
+        type: "array"
+        items:
+          $ref: "#/definitions/PartidaResponse"
+
+  ListaTorneiosResponse:
+    type: "object"
+    properties:
+      torneios:
+        type: "array"
+        items:
+          $ref: "#/definitions/TorneioResponse"
+
+  GolPartidaRequest:
+    type: "object"
+    properties:
+      idTime:
+        type: "integer"
+        format: "int32"
+      idJogador:
+        type: "integer"
+        format: "int32"
+
+  SubstituicaoRequest:
+    type: "object"
+    properties:
+      idTime:
+        type: "integer"
+        format: "int32"
+      idJogadorSubstituido:
+        type: "integer"
+        format: "int32"
+      idJogadorSubstituto:
+        type: "integer"
+        format: "int32"
+
+  AdvertenciaRequest:
+    type: "object"
+    properties:
+      idTime:
+        type: "integer"
+        format: "int32"
+      idJogador:
+        type: "integer"
+        format: "int32"
+      codTipoCartao:
+        type: "integer"
+        format: "int32"
+
+  AcrescimoRequest:
+    type: "object"
+    properties:
+      valorAcrescimo:
+        type: "integer"
+        format: "int32"
+
+  IntervaloRequest:
+    type: "object"
+    properties:
+      valorIntervalo:
+        type: "integer"
+        format: "int32"
+
+  ListaJogadoresRequest:
+    type: "object"
+    properties:
+      idsJogadores:
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+
+  SubstituicaoResponse:
+    type: "object"
+    properties:
+      time:
+        $ref: "#/definitions/TimeResponse"
+      jogadorSubstituido:
+        $ref: "#/definitions/JogadorResponse"
+      jogadorSubstituto:
+        $ref: "#/definitions/JogadorResponse"
+
+  AdvertenciaResponse:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      time:
+        $ref: "#/definitions/TimeResponse"
+      jogador:
+        $ref: "#/definitions/JogadorResponse"
+      tipoCartao:
+        type: "string"
+
+
+

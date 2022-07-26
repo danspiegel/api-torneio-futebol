@@ -1,0 +1,35 @@
+version: '3.2'
+
+volumes:
+  mysql_data:
+    driver: local
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15692:15692"
+    volumes:
+      - ../rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ../rabbitmq/rabbitmq_definitions.json:/etc/rabbitmq/definitions.json
+      - ../rabbitmq/rabbitmq_enabled_plugins:/etc/rabbitmq/enabled_plugins
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'cbfchampion'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: '1234'
+      MYSQL_ROOT_PASSWORD: '1234'
+      MYSQL_TCP_PORT: 3307
+    ports:
+      - '3307:3307'
+    expose:
+      - '3307'
+    volumes:
+      - mysql_data:/var/lib/mysql
